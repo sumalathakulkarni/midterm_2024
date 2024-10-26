@@ -4,10 +4,19 @@ import pandas as pd
 import os
 
 class CalculationHistory:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(CalculationHistory, cls).__new__(cls)
+        return cls._instance
+    
     def __init__(self, history_file):
-        self.history_file = history_file
-        self.history = pd.DataFrame(columns=["Expression", "Result"])
-        self.load_history()
+        if not hasattr(self, 'initialized'):
+            self.history_file = history_file
+            self.history = pd.DataFrame(columns=["Expression", "Result"])
+            self.load_history()
+            self.initialized = True
 
     def add_record(self, expression, result):
         new_record = pd.DataFrame({"Expression": [expression], "Result": [result]})
