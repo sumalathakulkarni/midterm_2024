@@ -2,6 +2,7 @@ import os
 import pkgutil
 import importlib
 from app.commands import CommandHandler, Command
+from app.calculationhistory import CalculationHistory
 from dotenv import load_dotenv, dotenv_values
 import logging
 import logging.config
@@ -18,6 +19,9 @@ class App:
         self.command_handler = CommandHandler()
         self.input_func = input_func  # Allow input function to be passed for testability
         self.output_func = output_func
+        history_file = os.getenv('CALCULATION_HISTORY_FILE')
+        self.history = CalculationHistory(history_file)
+        self.history.load_history()  
 
     def configure_logging(self):
         logging_conf_path = os.getenv('LOGGING_CONF_PATH')
@@ -52,7 +56,7 @@ class App:
                             if plugin_name == "menu": #pass command_handler for the menu plugin
                                 self.command_handler.register_command(plugin_name, item(self.command_handler))
                             else: 
-                                self.command_handler.register_command(plugin_name, item())
+                                self.command_handler.register_command(plugin_name, item(self.history))
                             logging.info(f"Command '{plugin_name}' from plugin '{plugin_name}' registered.")
                     except TypeError:
                         continue  # If item is not a class or unrelated class, just ignore
