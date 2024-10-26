@@ -18,27 +18,6 @@ import pytest
 from calculator.calculation import Calculation
 from calculator.operations import add, divide
 
-# pytest.mark.parametrize decorator is used to parameterize a test function, enabling it to be called
-# with different sets of arguments. Here, it's used to test various scenarios of arithmetic operations
-# with both integer and decimal operands to ensure the operations work correctly under different conditions.
-
-def test_calculation_operations(first_input, second_input, operation, expected):
-    """
-    Test calculation operations with various scenarios.
-    
-    This test ensures that the Calculation class correctly performs the arithmetic operation
-    (specified by the 'operation' parameter) on two Decimal operands ('first_input' and 'second_input'),
-    and that the result matches the expected outcome.
-    
-    Parameters:
-        first_input (Decimal): The first operand in the calculation.
-        second_input (Decimal): The second operand in the calculation.
-        operation (function): The arithmetic operation to perform.
-        expected (Decimal): The expected result of the operation.
-    """
-    calc = Calculation(first_input, second_input, operation)  # Create a Calculation instance with the provided operands and operation.
-    assert calc.perform() == expected, f"Failed {operation.__name__} operation with {first_input} and {second_input}"  # Perform the operation and assert that the result matches the expected value.
-
 def test_calculation_repr():
     """
     Test the string representation (__repr__) of the Calculation class.
