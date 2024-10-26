@@ -5,6 +5,9 @@ from calculator.operations import divide
 from decimal import Decimal
 
 class DivideCommand(Command):
+    def __init__(self, history):
+        self.history = history
+   
     def execute(self, *args):
         if len(args) != 2:
             return "Divide Command requires two arguments."
@@ -13,7 +16,10 @@ class DivideCommand(Command):
             if second_input == 0:
                 raise ValueError("Cannot divide by zero")
             calc = Calculation(first_input, second_input, divide)
-            return f"Divide Command Operation result for inputs {first_input}, {second_input} is {calc.perform()}"
+
+            result = calc.perform()
+            self.history.add_record(f"Divide ({first_input}, {second_input})",  result)
+            return f"Divide Command result for inputs {first_input}, {second_input} is {result}"
 
         except ValueError as e:
             return e
