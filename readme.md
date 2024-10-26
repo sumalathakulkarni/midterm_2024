@@ -9,10 +9,10 @@ The command will load all past command history and available commands and plugin
 the `menu` command will display the available command line operations as below: <br>
 **Available commands: add, clearhistory, divide, exit, menu, multiply, showhistory, subtract**<br>
 All the calculations can be performed using `operation val1 val2` syntax as below: <br>
-`add 2 3` <br>
-The above command will log the operation details to the command history (also applicaiton logging)<br><br>
-It will also display the result as below : <br>
-**Record added: Add (2, 3) = 5**<br><br>
+`add 2 3` <br><br>
+The above command will display the result as below : <br>
+**Add Command result for inputs 2, 3 is 5**<br>
+The above command will also log the operation details to the command history (also applicaiton logging)<br><br>
 If we don't pass enough number of parameters these operations will throw approproate error messages <br>
 `add` command will show the below error <br>
 **Add Command requires two arguments**.<br><br>
