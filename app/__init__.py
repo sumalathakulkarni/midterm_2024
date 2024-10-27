@@ -70,4 +70,3 @@ class App:
                 self.command_handler.execute_command(user_input)
             except Exception as e:
                 logging.error(f"An error occurred: {e}")
-                print(f"An error occurred: {e}")

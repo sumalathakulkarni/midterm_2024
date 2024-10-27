@@ -21,7 +21,7 @@ def multiply(first_input: Decimal, second_input: Decimal) -> Decimal:
 def divide(first_input: Decimal, second_input: Decimal) -> Decimal:
     """divide operation"""
     if second_input == 0:
-        logging.info("Cannot divide by zero")
+        logging.error("Cannot divide by zero")
         raise ValueError("Cannot divide by zero")
-    logging.info(f"Performing divide operation for ({first_input},{second_input})")
+    logging.error(f"Performing divide operation for ({first_input},{second_input})")
     return first_input / second_input
